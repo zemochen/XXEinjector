@@ -44,9 +44,9 @@ $contimeout = 30 # timeout used to close connection with server
 $port = 0 # remote host application port
 $remote = "" # remote host URL/IP address
 
-http_port = 80 # http port that receives file contents/directory listings and serves XML files
-ftp_port = 21 # ftp port that receives file contents/directory listings
-gopher_port = 70 # gopher port that receives file contents/directory listings
+http_port = 8087 # http port that receives file contents/directory listings and serves XML files
+ftp_port = 8021 # ftp port that receives file contents/directory listings
+gopher_port = 8070 # gopher port that receives file contents/directory listings
 jar_port = 1337 # port accepts connections and then sends files
 xslt_port = 1337 # port that is used to test for XSLT injection
 
@@ -236,13 +236,6 @@ if $logger == "n"
 	z = 1
 	loop do
 		break if File.readlines($file)[z].chomp.empty?
-		if File.readlines($file)[z].include?("Host: ")
-			$remote = File.readlines($file)[z].split(" ")[1]
-			if $remote.include?(":")
-				$port = $remote.split(":")[1]
-				$remote = $remote.split(":")[0]
-			end
-		end
 		z = z + 1
 	end
 	if $port == 0
@@ -1122,7 +1115,7 @@ if $brute == ""
 		loop do
 			sleep timeout
 			if switch == 1 && hashes == "n" && upload == ""
-				puts "FTP/HTTP did not get response. XML parser cannot parse provided file or the application is not responsive. Wait or Next? W/n"
+				puts "FTP/HTTP did not get response. XML parser cannot parse provided file or the application is not responsive1. Wait or Next? W/n"
 				cmp = Readline.readline("> ", true)
 				Readline::HISTORY.push
 				break if cmp == "n" || cmp == "N"
@@ -1206,7 +1199,7 @@ loop do
 					loop do
 						sleep timeout
 						if switch == 1
-							puts "FTP/HTTP did not get response. XML parser cannot parse provided file or the application is not responsive. Wait or Next? W/n"
+							puts "FTP/HTTP did not get response. XML parser cannot parse provided file or the application is not responsive2. Wait or Next? W/n"
 							cmp = Readline.readline("> ", true)
 							Readline::HISTORY.push
 							break if cmp == "n" || cmp == "N"
